@@ -95,3 +95,39 @@ body {
     font-size: 50px;
     font-weight: 700;
 }
+
+
+/* Education */
+.education-section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.education-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1d539f;
+}
+
+.education-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.education-card h3 {
+    font-size: 24px;
+    color: #1d539f;
+    margin-bottom: 10px;
+}
+
+.education-card p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
