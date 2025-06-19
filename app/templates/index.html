@@ -17,6 +17,17 @@
     <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
     <title>{{ title }}</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin=""
+    />
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        crossorigin=""
+    ></script>
+
 </head>
 
 <body>
@@ -36,5 +47,13 @@
         </div>
         <h1>{{ title }}</h1>
     </div>
+
+    <div class="map-section container">
+        <h2>Places I've Been</h2>
+        <div id="travel-map"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+
 </body>
 </html>
