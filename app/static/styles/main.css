@@ -23,7 +23,7 @@ body {
 .nav-content .logo-touch-target {
     display: inline-flex;
     height: 60%;
-    width: 350px;
+    width: auto;
 }
 
 .nav-content {
@@ -120,7 +120,8 @@ body {
 }
 
 .nav-logo img {
-    width: 200px;
+    width: auto;
+    height: 40px;
 }
 
 .nav-content nav {
@@ -134,8 +135,9 @@ body {
 .profile {
     background-color: #1d539f !important;
     text-align: center;
-    height: 320px;
+    height: 340px;
     margin-bottom: 50px;
+    padding-top: 20px;
 }
 
 .profile h1 {
@@ -151,12 +153,15 @@ body {
         margin-left: auto;
         margin-right: auto;
         display: block;        
-        padding: 20px;
+        padding: 10px;
 }
 
 .profile .profile-picture {
     margin-bottom: 30px;
-    height: 200px;
+    height: 240px;
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .banner {
