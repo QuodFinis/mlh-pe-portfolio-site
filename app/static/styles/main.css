@@ -269,3 +269,26 @@ body {
     color: #333;
     font-weight: 500;
 }
+
+
+/* map */
+.map-section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.map-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1d539f;
+    margin-bottom: 30px;
+}
+
+#travel-map {
+    width: 100%;
+    height: 500px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
