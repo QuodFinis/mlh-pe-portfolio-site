@@ -33,11 +33,12 @@
 <body>
     <header class="nav-bar">
         <div class="nav-content">
-            <a href="/">
+            <a href={{ url_for('index') }}>
                 <div class="nav-logo">
                     <img src="./static/img/logo.svg" />
                 </div>
             </a>
+            <a href="{{ url_for('hobbies') }}" class="btn btn-link text-white fw-bold">Hobbies</a>
         </div>
     </header>
 
