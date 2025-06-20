@@ -96,6 +96,181 @@ body {
     font-weight: 700;
 }
 
+
+/* About Section */
+.about-section {
+    max-width: 900px;
+    margin: 0 auto 80px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1d539f;
+    margin-bottom: 30px;
+}
+
+.about-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #333;
+    animation: fadeIn 1.2s ease-in-out both;
+}
+
+/* fade-in animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Work Experience Section */
+.work-section {
+    max-width: 900px;
+    margin: 0 auto 80px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.work-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1d539f;
+    margin-bottom: 40px;
+}
+
+.work-card {
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 30px;
+    animation: fadeIn 1.2s ease-in-out both;
+}
+
+.work-card h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.work-dates {
+    font-size: 14px;
+    font-weight: 500;
+    color: #888;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.work-card ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+.work-card li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+
+/* Education */
+.education-section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.education-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1d539f;
+}
+
+.education-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.education-card h3 {
+    font-size: 24px;
+    color: #1d539f;
+    margin-bottom: 10px;
+}
+
+.education-card p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
+
+
+/* Hobbies */
+.hobbies-section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.hobbies-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #1d539f;
+}
+
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.hobby-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px);
+}
+
+.hobby-card img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.hobby-card p {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+
 /* map */
 .map-section {
     padding: 60px 20px;
