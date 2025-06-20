@@ -242,6 +242,20 @@ body {
     justify-items: center;
 }
 
+.hobby-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 15px;
+    color: #1d539f;
+}
+
+.hobby-description {
+    font-size: 15px;
+    color: #555;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
 .hobby-card {
     background: white;
     border-radius: 16px;
@@ -269,6 +283,8 @@ body {
     color: #333;
     font-weight: 500;
 }
+
+
 
 
 /* map */
