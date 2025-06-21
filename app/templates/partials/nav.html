@@ -1,0 +1,17 @@
+<div class="nav-bar">
+    <div class="nav-content">
+        <div class="nav-logo">
+            <a href="{{ url_for('index') }}" class="logo-touch-target">
+                <img src="{{ url_for('static', filename='img/favicon.ico') }}" alt="Logo">
+            </a>
+        </div>
+        <nav class="nav-links">
+            {% for endpoint, text in nav_items.items() %}
+                {% if request.endpoint != endpoint %}
+                    <a class="nav-link {% if request.endpoint == endpoint %}active{% endif %}"
+                       href="{{ url_for(endpoint) }}">{{ text }}</a>
+                {% endif %}
+            {% endfor %}
+        </nav>
+    </div>
+</div>
