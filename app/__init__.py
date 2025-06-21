@@ -1,16 +1,26 @@
-import os
-from flask import Flask, render_template, request
-from dotenv import load_dotenv
+from flask import Flask, render_template
 
-load_dotenv()
 app = Flask(__name__)
 
+nav_items = {
+    'index': 'Home',
+    'hobbies': 'Hobbies'
+}
+
+@app.context_processor
+def inject_nav_items():
+    return dict(nav_items=nav_items)
 
 @app.route('/')
 def index():
-    return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
-
+    return render_template(
+        'index.html',
+        title="My Portfolio"
+    )
 
 @app.route('/hobbies')
 def hobbies():
-    return render_template('hobbies.html', title="My Hobbies")
+    return render_template(
+        'hobbies.html',
+        title="Hobbies"
+    )

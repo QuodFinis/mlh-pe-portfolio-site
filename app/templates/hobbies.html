@@ -21,15 +21,7 @@
 </head>
 
 <body>
-    <header class="nav-bar">
-        <div class="nav-content">
-            <a href="{{ url_for('index') }}" class="nav-link">
-                <div class="nav-logo">
-                    <img src="./static/img/logo.svg" alt="Logo" />
-                </div>
-            </a>
-        </div>
-    </header>
+    {% include 'partials/nav.html' %}
 
     <div class="profile">
         <div class="profile-picture">
@@ -43,7 +35,7 @@
         <h2 class="text-center mb-5">What I Enjoy</h2>
         <div class="row g-4">
             <!-- Hobby: Hiking -->
-            <div class="col-md-6 col-lg-4">
+            <div id="hiking" class="col-md-6 col-lg-4">
                 <div class="hobby-card h-100">
                     <img src="./static/img/hobby-hiking.jpg" alt="Hiking">
                     <p class="hobby-title">Hiking</p>
@@ -54,7 +46,7 @@
             </div>
 
             <!-- Hobby: Swimming -->
-            <div class="col-md-6 col-lg-4">
+            <div id="swimming" class="col-md-6 col-lg-4">
                 <div class="hobby-card h-100">
                     <img src="./static/img/hobby-swimming.jpg" alt="Swimming">
                     <p class="hobby-title">Swimming</p>
@@ -65,7 +57,7 @@
             </div>
 
             <!-- Hobby: Reading -->
-            <div class="col-md-6 col-lg-4">
+            <div id="reading" class="col-md-6 col-lg-4">
                 <div class="hobby-card h-100">
                     <img src="./static/img/hobby-reading.jpg" alt="Reading">
                     <p class="hobby-title">Reading</p>
@@ -76,7 +68,7 @@
             </div>
 
             <!-- Hobby: Gaming -->
-            <div class="col-md-6 col-lg-4">
+            <div id="gaming" class="col-md-6 col-lg-4">
                 <div class="hobby-card h-100">
                     <img src="./static/img/hobby-gaming.jpg" alt="Gaming">
                     <p class="hobby-title">Gaming</p>
@@ -92,7 +84,6 @@
         <p class="mb-0 text-muted">&copy; {{ year or "2025" }} My Portfolio</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
