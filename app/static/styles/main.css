@@ -1,5 +1,9 @@
-p, h1, h2, h3, h4, h5, h6, button {
-    font-family: "Roboto", serif;
+p, button {
+    font-family: "Roboto", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -7,16 +11,39 @@ body {
     background-size: cover;
     width: auto; 
     overflow-x: hidden;
-    font-family: "Roboto", serif;
+    font-family: "Roboto", sans-serif;
     margin: 0px;
+}
+
+/* Common styling for section headings */
+.about-section h2, .work-section h2, .education-section h2, .hobbies-section h2, .map-section h2 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #1d539f;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.about-section h2::after, .work-section h2::after, .education-section h2::after, 
+.hobbies-section h2::after, .map-section h2::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(to right, #1d539f, #a1c4fd);
+    bottom: 0;
+    left: 25%;
+    border-radius: 2px;
 }
 
 .nav-bar {
     width: 100%;
     display: inline-block;
     background-color: #1C539F;
-    font-family: "Roboto", serif;
-    font-weight: 700 !important;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600 !important;
     padding-top: 10px;
 }
 
@@ -143,7 +170,12 @@ body {
 .profile h1 {
         font-size: 50px;
         font-weight: 700;
-        color: white;
+        background: linear-gradient(to right, #FF2400, #FFA500);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        letter-spacing: 1px;
 }
 
 .profile img {
@@ -192,12 +224,7 @@ body {
     text-align: center;
 }
 
-.about-section h2 {
-    font-size: 36px;
-    font-weight: 700;
-    color: #1d539f;
-    margin-bottom: 30px;
-}
+/* Styling moved to common section heading styles */
 
 .about-card {
     background-color: #ffffff;
@@ -226,12 +253,7 @@ body {
     text-align: center;
 }
 
-.work-section h2 {
-    font-size: 36px;
-    font-weight: 700;
-    color: #1d539f;
-    margin-bottom: 40px;
-}
+/* Styling moved to common section heading styles */
 
 .work-card {
     background-color: #ffffff;
@@ -276,15 +298,10 @@ body {
     padding: 60px 20px;
     max-width: 800px;
     margin: 0 auto;
+    text-align: center;
 }
 
-.education-section h2 {
-    font-size: 36px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #1d539f;
-}
+/* Styling moved to common section heading styles */
 
 .education-card {
     background: white;
@@ -312,15 +329,10 @@ body {
     padding: 60px 20px;
     max-width: 1000px;
     margin: 0 auto;
+    text-align: center;
 }
 
-.hobbies-section h2 {
-    font-size: 36px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #1d539f;
-}
+/* Styling moved to common section heading styles */
 
 .hobbies-grid {
     display: grid;
@@ -382,12 +394,7 @@ body {
     text-align: center;
 }
 
-.map-section h2 {
-    font-size: 36px;
-    font-weight: 700;
-    color: #1d539f;
-    margin-bottom: 30px;
-}
+/* Styling moved to common section heading styles */
 
 #travel-map {
     width: 100%;
