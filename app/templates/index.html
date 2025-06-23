@@ -3,57 +3,57 @@
 {% block content %}
 <div class="profile">
     <div id="profile-picture" class="profile-picture">
-        <img src="{{ url_for('static', filename='img/profile_picture.jpg') }}">
+        <img src="{{ url_for('static', filename='img/profile_picture.jpg') }}" class="img-fluid">
     </div>
-    <h1>{{ title }}</h1>
+    <h1 class="mb-4">{{ title }}</h1>
 </div>
 
-<div class="about-section container">
-    <h2>About Me</h2>
+<div class="about-section container py-5">
+    <h2 class="mb-4">About Me</h2>
     <div class="about-card">
         {% for paragraph in about_me %}
-        <p>{{ paragraph }}</p>
+        <p class="mb-3">{{ paragraph }}</p>
         {% endfor %}
     </div>
 </div>
 
-<div class="work-section container">
-    <h2>Work Experience</h2>
+<div class="work-section container py-5">
+    <h2 class="mb-4">Work Experience</h2>
     {% for job in work_experience %}
-    <div class="work-card">
+    <div class="work-card mb-4">
         <h3>{{ job.title }}</h3>
         <span class="work-dates">{{ job.date_range }}</span>
-        <ul>
+        <ul class="mt-3">
             {% for item in job.description %}
-            <li>{{ item }}</li>
+            <li class="mb-2">{{ item }}</li>
             {% endfor %}
         </ul>
     </div>
     {% endfor %}
 </div>
 
-<div class="education-section container">
-    <h2>Education</h2>
+<div class="education-section container py-5">
+    <h2 class="mb-4">Education</h2>
     <div class="education-card">
-        <h3>{{ education.institution }}</h3>
+        <h3 class="mb-2">{{ education.institution }}</h3>
         <p><strong>{{ education.degree }}</strong></p>
     </div>
 </div>
 
-<div class="hobbies-section container">
-    <h2>Hobbies</h2>
+<div class="hobbies-section container py-5">
+    <h2 class="mb-4">Hobbies</h2>
     <div class="hobbies-grid">
         {% for hobby in hobbies %}
         <div class="hobby-card">
-            <img src="{{ url_for('static', filename='img/' + hobby.image) }}" alt="{{ hobby.name }}">
-            <p>{{ hobby.name }}</p>
+            <img src="{{ url_for('static', filename='img/' + hobby.image) }}" alt="{{ hobby.name }}" class="img-fluid">
+            <p class="mt-3">{{ hobby.name }}</p>
         </div>
         {% endfor %}
     </div>
 </div>
 
-<div class="map-section container">
-    <h2>Places I've Been</h2>
-    <div id="travel-map"></div>
+<div class="map-section container py-5">
+    <h2 class="mb-4">Places I've Been</h2>
+    <div id="travel-map" class="shadow-sm rounded"></div>
 </div>
 {% endblock %}
