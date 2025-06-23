@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
+{% block content %}
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:title" content="Personal Portfolio">
@@ -37,108 +36,56 @@
 
     <div class="profile">
         <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/profile_picture.jpg">
+            <img src="{{ url_for('static', filename='img/profile_picture.jpg') }}">
         </div>
         <h1>{{ title }}</h1>
     </div>
 
-
     <div class="about-section container">
         <h2>About Me</h2>
         <div class="about-card">
-            <p>
-                Hello! I'm a passionate developer with a love for technology and innovation.
-                I enjoy solving complex problems and creating elegant solutions.
-                When I'm not coding, you might find me off the beaten path, trekking through forests and swimming in lakes.
-            </p>
-            <p>
-                My journey in software development began years ago, and since then,
-                I've worked on various projects that have helped me grow both professionally and personally.
-                I'm always eager to learn new skills and take on challenging opportunities.
-            </p>
+            {% for paragraph in about_me %}
+            <p>{{ paragraph }}</p>
+            {% endfor %}
         </div>
     </div>
-
 
     <div class="work-section container">
         <h2>Work Experience</h2>
 
+        {% for job in work_experience %}
         <div class="work-card">
-            <h3>Data Engineer – CVS Health</h3>
-            <span class="work-dates">Jan 2025 – Present</span>
+            <h3>{{ job.title }}</h3>
+            <span class="work-dates">{{ job.date_range }}</span>
             <ul>
-                <li>Decommissioned IBM DB2 on-prem DB, migrating 100M+ rows to SQL Server with optimized SSIS & C# packages.</li>
-                <li>Developed executive-facing Power BI dashboards enabling self-service access to key business insights.</li>
-                <li>Automated ETL with a C# web scraper, removing manual steps and improving data availability.</li>
-                <li>Created web app to prevent direct prod DB edits, replacing manual inserts/updates.</li>
-                <li>Optimized complex queries, reducing execution time by 50% for analytics reporting.</li>
+                {% for item in job.description %}
+                <li>{{ item }}</li>
+                {% endfor %}
             </ul>
         </div>
-
-        <div class="work-card">
-            <h3>Software Engineer Intern – CVS Health</h3>
-            <span class="work-dates">May 2024 – Aug 2024</span>
-            <ul>
-                <li>Migrated on-prem Hadoop data to Google Cloud Platform; rebuilt egress pipelines using BigQuery.</li>
-                <li>Created performance-tuned egress framework, cutting transformation costs by 10% for large tables.</li>
-                <li>Automated builds and deployments using TeamCity and OctoDeploy, enhancing CI/CD.</li>
-                <li>Designed normalized database schemas for surveys in MSSQL with T-SQL.</li>
-            </ul>
-        </div>
-
-        <div class="work-card">
-            <h3>Software Engineer Intern – Metropolitan Transportation Authority</h3>
-            <span class="work-dates">Sept 2023 – Jan 2024</span>
-            <ul>
-                <li>Built automated ETL pipelines with Python and Apache Airflow for hybrid data platforms.</li>
-                <li>Engineered ETL processes using Pandas & DuckDB to extract and clean SharePoint data.</li>
-                <li>Created real-time Power BI dashboards connected to Azure Data Lake, reducing ad-hoc reporting by 33%.</li>
-                <li>Maintained internal documentation using Sphinx and developed wiki resources.</li>
-            </ul>
-        </div>
-
-        <div class="work-card">
-            <h3>Software Engineer Intern – Air Force Research Lab</h3>
-            <span class="work-dates">June 2023 – Aug 2023</span>
-            <ul>
-                <li>Researched and implemented genetic algorithms for network anomaly detection.</li>
-                <li>Built clustering algorithm with C++, openGA, and Boost to process millions of 3D points.</li>
-                <li>Reduced compute time by 15%+ through profiling and macro-based optimizations.</li>
-                <li>Used GitHub Actions to automate testing and streamline team collaboration.</li>
-            </ul>
-        </div>
+        {% endfor %}
     </div>
 
 
     <div class="education-section container">
-      <h2>Education</h2>
-      <div class="education-card">
-          <h3>The City College of New York (CCNY)</h3>
-          <p><strong>Bachelor of Science, Computer Science</strong></p>
-      </div>
+        <h2>Education</h2>
+        <div class="education-card">
+            <h3>{{ education.institution }}</h3>
+            <p><strong>{{ education.degree }}</strong></p>
+        </div>
     </div>
 
 
     <div class="hobbies-section container">
-      <h2>Hobbies</h2>
-      <div class="hobbies-grid">
-          <div class="hobby-card">
-              <img src="./static/img/hobby-hiking.jpg" alt="Hiking">
-              <p>Hiking</p>
-          </div>
-          <div class="hobby-card">
-              <img src="./static/img/hobby-swimming.jpg" alt="Swimming">
-              <p>Swimming</p>
-          </div>
-          <div class="hobby-card">
-              <img src="./static/img/hobby-reading.jpg" alt="Reading">
-              <p>Reading</p>
-          </div>
-          <div class="hobby-card">
-              <img src="./static/img/hobby-gaming.jpg" alt="Gaming">
-              <p>Games</p>
-          </div>
-      </div>
+        <h2>Hobbies</h2>
+        <div class="hobbies-grid">
+            {% for hobby in hobbies %}
+            <div class="hobby-card">
+                <img src="{{ url_for('static', filename='img/' + hobby.image) }}" alt="{{ hobby.name }}">
+                <p>{{ hobby.name }}</p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
 
@@ -148,7 +95,6 @@
     </div>
 
     <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
-
 
   </body>
 
