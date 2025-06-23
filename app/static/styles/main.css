@@ -54,7 +54,12 @@ body {
     background-color: #1C539F;
     font-family: "Poppins", sans-serif;
     font-weight: 600 !important;
-    padding-top: 10px;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for better visual separation */
 }
 
 .nav-content .logo-touch-target {
@@ -174,7 +179,7 @@ body {
     text-align: center;
     height: 340px;
     margin-bottom: 50px;
-    padding-top: 20px;
+    padding-top: 90px; /* Increased from 20px to account for fixed navbar */
 }
 
 .profile h1 {
