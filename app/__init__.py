@@ -98,7 +98,7 @@ hobbies = [
 def index():
     return render_template(
         'index.html',
-        title="MLH Fellow",
+        title="Mahmud Hasan",
         url=os.getenv("URL"),
         nav_items=nav_items,
         about_me=about_me,
