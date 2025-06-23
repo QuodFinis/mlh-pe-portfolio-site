@@ -94,11 +94,14 @@ hobbies = [
     }
 ]
 
+name = "Mahmud Hasan"
+
+
 @app.route('/')
 def index():
     return render_template(
         'index.html',
-        title="Mahmud Hasan",
+        title=name,
         url=os.getenv("URL"),
         nav_items=nav_items,
         about_me=about_me,

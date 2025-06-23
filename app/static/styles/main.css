@@ -8,9 +8,7 @@ h1, h2, h3, h4, h5, h6 {
 
 html {
     scroll-behavior: smooth;
-    /* Add some padding to account for fixed elements */
     scroll-padding-top: 70px;
-    /* Improve scrolling at boundaries */
     overscroll-behavior: contain;
 }
 
@@ -21,11 +19,9 @@ body {
     overflow-x: hidden;
     font-family: "Roboto", sans-serif;
     margin: 0px;
-    /* Add smooth transitions for scrolling effects */
     transition: all 0.3s ease-in-out;
 }
 
-/* Common styling for section headings */
 .about-section h2, .work-section h2, .education-section h2, .hobbies-section h2, .map-section h2 {
     font-size: 36px;
     font-weight: 600;
@@ -59,7 +55,7 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for better visual separation */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .nav-content .logo-touch-target {
@@ -177,9 +173,9 @@ body {
 .profile {
     background-color: #1d539f !important;
     text-align: center;
-    height: 340px;
+    height: 440px;
     margin-bottom: 50px;
-    padding-top: 90px; /* Increased from 20px to account for fixed navbar */
+    padding-top: 90px;
 }
 
 .profile h1 {
@@ -239,7 +235,6 @@ body {
     text-align: center;
 }
 
-/* Styling moved to common section heading styles */
 
 .about-card {
     background-color: #ffffff;
@@ -268,7 +263,6 @@ body {
     text-align: center;
 }
 
-/* Styling moved to common section heading styles */
 
 .work-card {
     background-color: #ffffff;
@@ -316,7 +310,6 @@ body {
     text-align: center;
 }
 
-/* Styling moved to common section heading styles */
 
 .education-card {
     background: white;
@@ -347,7 +340,6 @@ body {
     text-align: center;
 }
 
-/* Styling moved to common section heading styles */
 
 .hobbies-grid {
     display: grid;
@@ -409,7 +401,6 @@ body {
     text-align: center;
 }
 
-/* Styling moved to common section heading styles */
 
 #travel-map {
     width: 100%;
