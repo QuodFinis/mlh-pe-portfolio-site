@@ -1,32 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="profile">
-        <div class="profile-picture">
-            <img src="{{ url_for('static', filename='img/profile_picture.jpg') }}" alt="Profile Picture">
-        </div>
-        <h1>{{ title }}</h1>
+<div class="profile">
+    <div class="profile-picture">
+        <img src="{{ url_for('static', filename='img/profile_picture.jpg') }}" alt="Profile Picture">
     </div>
+    <h1>{{ title }}</h1>
+</div>
 
-    <!-- Hobbies Section -->
-    <div class="container hobbies-section mb-5">
-        <h2 class="text-center mb-5">What I Enjoy</h2>
-        <div class="row g-4">
-            {% for hobby in hobbies %}
-            <div class="col-md-6 col-lg-4">
-                <div class="hobby-card h-100">
-                    <img src="{{ url_for('static', filename='img/' + hobby.image) }}" alt="{{ hobby.name }}">
-                    <p class="hobby-title">{{ hobby.name }}</p>
-                    <p class="hobby-description">
-                        {{ hobby.description }}
-                    </p>
-                </div>
+<div class="container hobbies-section mb-5">
+    <h2 class="text-center mb-5">What I Enjoy</h2>
+    <div class="row g-4">
+        {% for hobby in hobbies %}
+        <div class="col-md-6 col-lg-4">
+            <div class="hobby-card h-100">
+                <img src="{{ url_for('static', filename='img/' + hobby.image) }}" alt="{{ hobby.name }}">
+                <p class="hobby-title">{{ hobby.name }}</p>
+                <p class="hobby-description">{{ hobby.description }}</p>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
+</div>
 
-    <footer class="text-center py-4">
-        <p class="mb-0 text-muted">&copy; {{ year or "2025" }} My Portfolio</p>
-    </footer>
+<footer class="text-center py-4">
+    <p class="mb-0 text-muted">&copy; {{ year or "2025" }} My Portfolio</p>
+</footer>
 {% endblock %}

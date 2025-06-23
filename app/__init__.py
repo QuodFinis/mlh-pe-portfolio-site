@@ -12,14 +12,16 @@ nav_items = {
     'hobbies_page': 'Hobbies'
 }
 
-# Data is here now but ideally it would be in a database and pulled from there.
-# About me data
+@app.context_processor
+def inject_nav_items():
+    return dict(nav_items=nav_items)
+
+# Static data
 about_me = [
     "Hello! I'm a passionate developer with a love for technology and innovation. I enjoy solving complex problems and creating elegant solutions. When I'm not coding, you might find me off the beaten path, trekking through forests and swimming in lakes.",
     "My journey in software development began years ago, and since then, I've worked on various projects that have helped me grow both professionally and personally. I'm always eager to learn new skills and take on challenging opportunities."
 ]
 
-# Work experience data
 work_experience = [
     {
         "title": "Data Engineer – CVS Health",
@@ -64,13 +66,11 @@ work_experience = [
     }
 ]
 
-# Education data
 education = {
     "institution": "The City College of New York (CCNY)",
     "degree": "Bachelor of Science, Computer Science"
 }
 
-# Hobbies data
 hobbies = [
     {
         "name": "Hiking",
@@ -94,12 +94,11 @@ hobbies = [
     }
 ]
 
-
 @app.route('/')
 def index():
     return render_template(
-        'index.html', 
-        title="MLH Fellow", 
+        'index.html',
+        title="MLH Fellow",
         url=os.getenv("URL"),
         nav_items=nav_items,
         about_me=about_me,
@@ -109,11 +108,10 @@ def index():
         year=datetime.now().year
     )
 
-
 @app.route('/hobbies')
 def hobbies_page():
     return render_template(
-        'hobbies.html', 
+        'hobbies.html',
         title="My Hobbies",
         nav_items=nav_items,
         hobbies=hobbies,
