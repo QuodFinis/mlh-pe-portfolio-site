@@ -54,6 +54,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    transition: transform 0.3s ease-in-out;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -343,8 +344,8 @@ body {
 
 .hobbies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px;
     justify-items: center;
 }
 
