@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
 from datetime import datetime
 from peewee import *
@@ -35,7 +35,8 @@ mydb.create_tables([TimelinePost])
 # Navigation items
 nav_items = {
     'index': 'Home',
-    'hobbies_page': 'Hobbies'
+    'hobbies_page': 'Hobbies',
+    'timeline': 'Timeline'
 }
 
 @app.context_processor
@@ -147,6 +148,29 @@ def hobbies_page():
         year=datetime.now().year
     )
 
+@app.route('/timeline')
+def timeline():
+    posts = TimelinePost.select().order_by(TimelinePost.created_at.desc())
+    return render_template(
+        'timeline.html',
+        title="Timeline",
+        nav_items=nav_items,
+        year=datetime.now().year,
+        posts=posts
+    )
+
+# separate route for timeline form so that after submission, we can redirect to timeline
+@app.route('/submit_timeline_post', methods=['POST'])
+def submit_timeline_post():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    content = request.form.get('content')
+
+    if not name or not email or not content:
+        return "Missing fields", 400
+
+    TimelinePost.create(name=name, email=email, content=content)
+    return redirect(url_for('timeline'))  # PRG: Redirect after POST
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_timeline_post():
@@ -154,11 +178,9 @@ def post_timeline_post():
     email = request.form['email']
     content = request.form['content']
 
-    # Create and save the post
     post = TimelinePost(name=name, email=email, content=content)
     post.save()
 
-    # Return the ID and a success message
     return {"id": post.id, "message": "Resource created successfully."}, 201
 
 @app.route('/api/timeline_post', methods=['GET'])
