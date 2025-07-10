@@ -15,4 +15,4 @@ pip install -r requirements.txt
 deactivate
 
 # start a new detached tmux session named deploy-site
-tmux new-session -d -s deploy-site "cd ~/mlh-pe-portfolio-site && source venv/bin/activate && flask run --host=0.0.0.0"
+tmux new-session -d -s deploy-site "source venv/bin/activate && flask run --host=0.0.0.0"
