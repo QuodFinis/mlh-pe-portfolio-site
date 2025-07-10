@@ -17,7 +17,7 @@ mydb = (
         port=3306)
     )
 
-# print(mydb)
+print(mydb)
 
 class TimelinePost(Model):
     name = CharField()
