@@ -8,14 +8,18 @@ from playhouse.shortcuts import model_to_dict
 load_dotenv()
 app = Flask(__name__)
 
-mydb = (
-    MySQLDatabase(
-        os.getenv("MYSQL_DATABASE"),
-        user=os.getenv("MYSQL_USER"),
-        password=os.getenv("MYSQL_PASSWORD"),
-        host=os.getenv("MYSQL_HOST"),
-        port=3306)
-    )
+if os.getenv("TESTING") == "true":
+    print("Running in test mode")
+    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
+else:
+    mydb = (
+        MySQLDatabase(
+            os.getenv("MYSQL_DATABASE"),
+            user=os.getenv("MYSQL_USER"),
+            password=os.getenv("MYSQL_PASSWORD"),
+            host=os.getenv("MYSQL_HOST"),
+            port=3306)
+        )
 
 print(mydb)
 
@@ -174,30 +178,40 @@ def submit_timeline_post():
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_timeline_post():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
+    # Get form data
+    name = request.form.get('name')
+    email = request.form.get('email')
+    content = request.form.get('content')
 
+    # Validate inputs
+    if not name or not name.strip():
+        return {"error": "Invalid Name"}, 400
+    if not content or not content.strip():
+        return {"error": "Invalid Content"}, 400
+    if not email or '@' not in email:
+        return {"error": "Invalid Email"}, 400
+
+    # Create and save post if validation passes
     post = TimelinePost(name=name, email=email, content=content)
     post.save()
 
     return {"id": post.id, "message": "Resource created successfully."}, 201
 
 @app.route('/api/timeline_post', methods=['GET'])
-def get_timeline_post():
-    post_id = request.args.get('id')  # Optional query parameter
-
-    if post_id:
-        try:
-            post = TimelinePost.get_by_id(post_id)
-            return model_to_dict(post)
-        except TimelinePost.DoesNotExist:
-            return {"error": f"Post with id {post_id} not found."}, 404
-
-    # Default: return all posts
+def get_all_timeline_post():
+    # all posts
     return {
         'timeline_posts': [
             model_to_dict(p)
             for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
         ]
     }
+
+@app.route('/api/timeline_post/<int:post_id>', methods=['GET'])
+def get_timeline_post(post_id):
+    """Get a specific timeline post by ID"""
+    try:
+        post = TimelinePost.get_by_id(post_id)
+        return model_to_dict(post)
+    except TimelinePost.DoesNotExist:
+        return {"error": f"Post with id {post_id} not found."}, 404
