@@ -1,0 +1,28 @@
+version: '3'
+services:
+  myportfolio:
+    container_name: myportfolio
+    build: .
+    restart: always
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - "5000:5000"
+    volumes:
+      - ".:/mlh-pe-portfolio-site"
+    depends_on:
+      - mysql
+
+
+  # mysql db
+  mysql:
+    container_name: mysql
+    image: mariadb
+    restart: always
+    env_file:
+      .env
+    volumes:
+      - mydb:/var/lib/mysql
+
+volumes:
+  mydb:
