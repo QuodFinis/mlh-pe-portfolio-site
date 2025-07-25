@@ -10,5 +10,5 @@ git fetch && git reset origin/main --hard
 chmod +x redeploy-site.sh
 
 # build the Docker image
-docker compose -f docker-compose.prod.yml down
-docker compose -f docker-compose.prod.yml up -d --build
+docker compose -f compose.prod.yaml down
+docker compose -f compose.prod.yaml up -d --build
