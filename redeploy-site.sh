@@ -9,11 +9,6 @@ git fetch && git reset origin/main --hard
 # give redeploy-site exec perms
 chmod +x redeploy-site.sh
 
-# enter virtual environment & install dependencies
-source venv/bin/activate
-pip install -r requirements.txt
-deactivate
-
-# restart myportfolio service
-systemctl restart myportfolio
-systemctl status myportfolio
+# build the Docker image
+docker compose -f docker-compose.prod.yml down
+docker compose -f docker-compose.prod.yml up -d --build
