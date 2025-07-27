@@ -4,9 +4,12 @@ from dotenv import load_dotenv
 from datetime import datetime
 from peewee import *
 from playhouse.shortcuts import model_to_dict
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 load_dotenv()
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1)
+
 
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
@@ -174,7 +177,15 @@ def submit_timeline_post():
         return "Missing fields", 400
 
     TimelinePost.create(name=name, email=email, content=content)
-    return redirect(url_for('timeline'))  # PRG: Redirect after POST
+
+    # Get the forwarded host header or fall back to request host
+    forwarded_host = request.headers.get('X-Forwarded-Host')
+    if forwarded_host:
+        redirect_url = f"http://{forwarded_host}/timeline"
+    else:
+        redirect_url = url_for('timeline')
+
+    return redirect(redirect_url)  # PRG: Redirect after POST
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_timeline_post():
