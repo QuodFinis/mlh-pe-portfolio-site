@@ -155,18 +155,24 @@ def hobbies_page():
         year=datetime.now().year
     )
 
+
 @app.route('/timeline')
 def timeline():
     posts = TimelinePost.select().order_by(TimelinePost.created_at.desc())
+
+    # Get error message from URL parameter
+    error_message = request.args.get('error')
+
     return render_template(
         'timeline.html',
         title="Timeline",
         nav_items=nav_items,
         year=datetime.now().year,
-        posts=posts
+        posts=posts,
+        error_message=error_message
     )
 
-# separate route for timeline form so that after submission, we can redirect to timeline
+
 @app.route('/submit_timeline_post', methods=['POST'])
 def submit_timeline_post():
     name = request.form.get('name')
@@ -174,18 +180,11 @@ def submit_timeline_post():
     content = request.form.get('content')
 
     if not name or not email or not content:
-        return "Missing fields", 400
+        return redirect(url_for('timeline', error='Please fill in all fields'))
 
     TimelinePost.create(name=name, email=email, content=content)
+    return redirect(url_for('timeline'))
 
-    # Get the forwarded host header or fall back to request host
-    forwarded_host = request.headers.get('X-Forwarded-Host')
-    if forwarded_host:
-        redirect_url = f"http://{forwarded_host}/timeline"
-    else:
-        redirect_url = url_for('timeline')
-
-    return redirect(redirect_url)  # PRG: Redirect after POST
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_timeline_post():
