@@ -8,7 +8,13 @@ cd ~/mlh-pe-portfolio-site || exit 1
 # update code from GitHub main branch
 git fetch && git reset origin/main --hard
 
-# install dependencies and check if tests pass
+# give redeploy-site exec perms
+chmod +x redeploy-site.sh
+
+# start venv and install dependencies and check if tests pass
+if [ ! -d venv ]; then
+    python3 -m venv venv
+fi
 pip install -r requirements.txt
 if ! python -m unittest discover -v tests/; then
     echo "Tests failed. Exiting redeployment."
@@ -23,9 +29,6 @@ if [ -d venv ]; then
     deactivate
     rm -rf venv
 fi
-
-# give redeploy-site exec perms
-chmod +x redeploy-site.sh
 
 # build the Docker image
 docker compose -f compose.prod.yaml down
