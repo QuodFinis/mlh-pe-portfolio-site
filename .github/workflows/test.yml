@@ -22,9 +22,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Set up venv
-        run: python -m venv venv
-
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
