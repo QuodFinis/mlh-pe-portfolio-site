@@ -26,13 +26,9 @@ jobs:
         run: python -m venv venv
 
       - name: Install Dependencies
-        run: |
-          source venv/bin/activate
-          pip install -r requirements.txt
-          pip freeze
+        run: pip install -r requirements.txt
 
       - name: Run Tests
         run: |
           chmod +x run-test.sh
           ./run-test.sh
-
