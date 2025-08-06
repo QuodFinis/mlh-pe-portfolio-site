@@ -47,8 +47,4 @@ jobs:
 
 
       - name: Print project root directory
-        run: ssh $SSH_PRIVATE_KEY SSH_USER@SSH_IP "cd ${{ secrets.PROJECT_ROOT }} && pwd"
-        env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_IP: ${{ secrets.SSH_IP }}
+        run: ssh my-vps "pwd && cd ${{ secrets.PROJECT_ROOT }} && pwd"
