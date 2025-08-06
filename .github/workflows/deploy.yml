@@ -22,7 +22,7 @@ jobs:
             User $SSH_USER
             IdentityFile ~/.ssh/deploy-key
             StrictHostKeyChecking no
-          END
+          EOF
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
