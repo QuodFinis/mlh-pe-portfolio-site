@@ -14,32 +14,15 @@ jobs:
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
-
-          # Verify secrets are present (without showing values)
-          echo "Checking secrets existence..."
-          if [ -z "$SSH_PRIVATE_KEY" ]; then echo "SSH_PRIVATE_KEY is empty"; exit 1; fi
-          if [ -z "$SSH_IP" ]; then echo "SSH_IP is empty"; exit 1; fi
-          if [ -z "$SSH_USER" ]; then echo "SSH_USER is empty"; exit 1; fi
-
-          # Verify key file creation (without showing content)
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key
           chmod 600 ~/.ssh/deploy-key
-          echo "Key file created with size: $(wc -c < ~/.ssh/deploy-key) bytes"
-
-          # Verify config file
           cat >> ~/.ssh/config <<EOF
           Host my-vps
             HostName $SSH_IP
             User $SSH_USER
             IdentityFile ~/.ssh/deploy-key
             StrictHostKeyChecking no
-          EOF
-
-          # Debug output (safe)
-          echo "SSH config contains:"
-          grep -E 'Host|HostName|User' ~/.ssh/config
-          echo "Key fingerprint:"
-          ssh-keygen -lf ~/.ssh/deploy-key
+          END
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
