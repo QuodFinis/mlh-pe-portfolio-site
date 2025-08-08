@@ -47,8 +47,8 @@ deactivate
 rm -rf venv
 
 # Docker deployment
-docker compose -f compose.prod.yaml down
-docker compose -f compose.prod.yaml up -d --build
+sudo docker compose -f compose.prod.yaml down
+sudo docker compose -f compose.prod.yaml up -d --build
 
 # Warm up server
 echo "Waiting for server to start..."
