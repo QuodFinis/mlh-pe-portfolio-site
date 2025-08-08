@@ -33,8 +33,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
 
-      - name: Test SSH connection
-        run: ssh -v my-vps "echo 'Successfully connected!'"
-
       - name: Print project root directory
-        run: ssh my-vps "pwd && cd ${{ secrets.PROJECT_ROOT }} && pwd"
+        run: ssh my-vps "~/redeploy-site.sh"
