@@ -1,9 +1,13 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+import time
+
+import requests
+from flask import Flask, render_template, request, redirect, url_for, Response
 from dotenv import load_dotenv
 from datetime import datetime
 from peewee import *
 from playhouse.shortcuts import model_to_dict
+from prometheus_client import generate_latest, CollectorRegistry, Gauge
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 load_dotenv()
@@ -225,3 +229,53 @@ def get_timeline_post(post_id):
         return model_to_dict(post)
     except TimelinePost.DoesNotExist:
         return {"error": f"Post with id {post_id} not found."}, 404
+
+
+@app.route("/metrics")
+def metrics():
+    registry = CollectorRegistry()
+
+    # health gauges
+    flask_up = Gauge("flask_up", "Flask app up", registry=registry)
+    db_up = Gauge("mariadb_up", "MariaDB up", registry=registry)
+    nginx_up = Gauge("nginx_up", "Nginx up", registry=registry)
+
+    # latency gauges
+    flask_latency = Gauge("flask_latency_ms", "Flask latency (ms)", registry=registry)
+    db_latency = Gauge("mariadb_latency_ms", "MariaDB query latency (ms)", registry=registry)
+    nginx_latency = Gauge("nginx_latency_ms", "Nginx latency (ms)", registry=registry)
+
+    # --- Flask check (self request)
+    start = time.time()
+    try:
+        r = requests.get("http://myportfolio:5000/")
+        flask_up.set(1 if r.status_code == 200 else 0)
+    except:
+        flask_up.set(0)
+    flask_latency.set((time.time() - start) * 1000)
+
+    # --- MariaDB health check via Peewee connection
+    try:
+        start = time.time()
+        mydb.connect(reuse_if_open=True)
+        mydb.execute_sql("SELECT 1;")
+        db_up.set(1)
+        db_latency.set((time.time() - start) * 1000)
+    except Exception as e:
+        db_up.set(0)
+        db_latency.set(-1)
+    finally:
+        if not mydb.is_closed():
+            mydb.close()
+
+    # --- Nginx check
+    try:
+        start = time.time()
+        r = requests.get("http://nginx")
+        nginx_up.set(1 if r.status_code == 200 else 0)
+        nginx_latency.set((time.time() - start) * 1000)
+    except:
+        nginx_up.set(0)
+        nginx_latency.set(-1)
+
+    return Response(generate_latest(registry), mimetype="text/plain")
