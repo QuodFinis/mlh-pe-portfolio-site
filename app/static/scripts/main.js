@@ -1,6 +1,7 @@
-const mapContainer = document.getElementById('map');
+const mapContainer = document.getElementById('travel-map');
+
 if (mapContainer) {
-  const map = L.map('travel-map').setView([40.7128, -74.0060], 2); // Default: NYC
+  const map = L.map('travel-map').setView([40.7128, -74.0060], 2);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
