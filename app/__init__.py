@@ -257,16 +257,13 @@ def metrics():
     # --- MariaDB health check via Peewee connection
     try:
         start = time.time()
-        mydb.connect(reuse_if_open=True)
-        mydb.execute_sql("SELECT 1;")
+        with mydb.connection_context():
+            mydb.execute_sql("SELECT 1;")
         db_up.set(1)
         db_latency.set((time.time() - start) * 1000)
-    except Exception as e:
+    except Exception:
         db_up.set(0)
         db_latency.set(-1)
-    finally:
-        if not mydb.is_closed():
-            mydb.close()
 
     # --- Nginx check
     try:
