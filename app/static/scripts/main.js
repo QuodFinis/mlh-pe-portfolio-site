@@ -36,4 +36,6 @@ if (mapContainer) {
   locations.forEach(loc => {
       L.marker([loc.lat, loc.lon]).addTo(map).bindPopup(loc.label);
   });
+
+  console.log("Map initialized with markers for travel locations.");
 }
