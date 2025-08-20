@@ -248,7 +248,7 @@ def metrics():
     # --- Flask check (self request)
     start = time.time()
     try:
-        requests.get("http://myportfolio:5000/", timeout=3)
+        r= requests.get("http://myportfolio:5000/", timeout=3)
         flask_up.set(1 if r.status_code == 200 else 0)
     except:
         flask_up.set(0)
